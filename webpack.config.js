@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env = {}) => {
   const { mode = 'development' } = env;
@@ -19,12 +19,14 @@ module.exports = (env = {}) => {
   const getPlugins = () => {
     const plugins = [ 
       new HtmlWebpackPlugin({
-      template: './src/index.html',
+        template: './src/index.html',
       // favicon: './src/assets/img/icon-48x48.png',
       }),
-  //  new CopyPlugin([
-  //    { from: './src/assets', to: 'assets' },
-  //  ]),
+      new CopyPlugin({
+        patterns: [
+          { from: './src/assets', to: 'assets' },
+        ],
+      }),
     ];
 
     if (isProd) {
@@ -82,6 +84,14 @@ module.exports = (env = {}) => {
               outputPath: 'assets/fonts'
             },
           }
+        },
+        {
+          test: /\.(mp3)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
         },
       ],
     },
