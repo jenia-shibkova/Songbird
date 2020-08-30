@@ -3,12 +3,9 @@
 body {
 }
 
-.btn-next {
-  background-color: #00bc8c;
-  cursor: pointer;
-  box-sizing: border-box;
-  width: 100%;
-  margin: 25px 15px;
-  box-shadow: none;
-  cursor: pointer;
+.audio-player {
+  width: calc(100% - 20px);
+  outline: none;
+  margin: 15px 0;
 }
+
