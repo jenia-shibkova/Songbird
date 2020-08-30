@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Header.scss';
 
-export default class Header extends Component {
+class Header extends Component {
 
   state = {
     navItems: ['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Морские птицы']
@@ -42,3 +43,12 @@ export default class Header extends Component {
     )
   } 
 }
+
+const mapStateToProps = (state) => {
+  return {
+    score: state.score.score,
+    page: state.page.page,
+  }
+}
+
+export default connect(mapStateToProps, null)(Header);
