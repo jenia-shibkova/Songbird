@@ -1,42 +1,49 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import './App.scss';
 
 import Header from '../header';
 import RandomBird from '../random-bird';
-import QuestionList from '../question-list';
+import BirdList from '../bird-list';
 import Answer from '../answer';
+import ButtonNext from '../button-next';
+import winAudio from '../../assets/audio/win.mp3';
+import errorAudio from '../../assets/audio/error.mp3';
 
 
-export default class App extends Component {
-  maxId = 100;
+function App(props) {
 
-  state = {
-    score: 0,
-    step: 0,
-    win: false,
-    select: false,
-    id: 0,
-    page: 0,
-    random: 0 
-  } 
-
-  render() {
-    const { score } = this.state;
+     if (props.page > 5) {
+      return (
+        <div className="app">
+          <p>Game over</p>
+        </div>
+      )    
+    }
 
     return (
       <div className="app">
-        <Header score={score} />  
-        <RandomBird/> 
+        <Header />  
+        <RandomBird /> 
         <div className="row mb2">
           <div className="col-md-6">            
-            <QuestionList /> 
+            <BirdList /> 
           </div>
           <div className="col-md-6">
             <Answer />
           </div>
-          <button class="btn btn-next">Next Level</button>
-        </div>       
+          <ButtonNext />
+        </div>     
       </div>
     )
-  } 
+
 }
+
+const mapStateToProps = (state) => {
+  return {
+    page: state.page.page,
+  };
+};
+
+export default connect(mapStateToProps, null)(App);
