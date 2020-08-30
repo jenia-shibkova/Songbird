@@ -1,18 +1,3 @@
-.playback-button {
-  -webkit-transition: .2s;
-  transition: .2s;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #00bc8c;
-  justify-content: center;
-  border-radius: 50%;
-  margin-right: 20px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  align-items: center;
-  display: flex;
-}
-
 .random-bird {
   display: flex;
   padding: 1rem;
@@ -31,97 +16,9 @@
   margin: 0;
 }
 
-.playback-button svg {
-  -webkit-transition: .2s;
-  transition: .2s;
-  width: 18px;
-  height: 18px;
-  color: #54b1c1;
-}
-
 .random-bird .list-group {
   margin-left: 40px;
 }
-
-.audio-player {
-  margin: 10px 40px 8px 0;
-  width: 100%;
-  min-width: 100px;
-}
-
-.controls, .playback-button {
-  display: flex;
-  align-items: center;
-}
-
-.playback-button {
-  -webkit-transition: .2s;
-  transition: .2s;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #00bc8c;
-  justify-content: center;
-  border-radius: 50%;
-  margin-right: 20px;
-  margin-bottom: 12px;
-  cursor: pointer;
-}
-
-.playback-button svg {
-  -webkit-transition: .2s;
-  transition: .2s;
-  width: 18px;
-  height: 18px;
-  color: #54b1c1;
-}
-
-.timebar {
-  flex: 1 1;
-  margin-top: 12px;
-}
-
-.timebar-bar {
-  height: 4px;
-}
-
-.timebar-circle {
-  background-color: grey;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  -webkit-transform: translate(-50%,calc(-50% + 2px));
-  transform: translate(-50%,calc(-50% + 2px));
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
-  cursor: pointer;
-}
-
-.timebar-time-info {
-  margin-top: 8px;
-  font-size: 11px;
-  color: #d3d3d3;
-  display: flex;
-  justify-content: space-between;
-}
-
-.timebar {
-  position: relative;
-}
-
-.timebar-bar {
-  background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, rgb(115, 115, 115) 100%);
-}
-
-// .timebar-bar {
-//   background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) 32.2288%, rgb(115, 115, 115) 32.2288%, rgb(115, 115, 115) 100%);
-// }
-
-// .timebar-circle {
-//   left: 30%;
-// }
-
-
 
 @media (max-width: 570px) {  
   .random-bird {
