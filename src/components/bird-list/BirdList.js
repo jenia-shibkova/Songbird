@@ -5,7 +5,7 @@ import birdsData from '../../data/birds';
 
 import BirdListItem from './BirdListItem';
 
-function BirdsList(props) {
+const BirdsList = (props) => {
   const { page } = props;
 
   return (
@@ -20,7 +20,7 @@ function BirdsList(props) {
       })}
     </ul>
   )
-}
+};
 
 const mapStateToProps = (state) => {
  
