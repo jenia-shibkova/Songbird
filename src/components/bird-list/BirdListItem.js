@@ -6,7 +6,6 @@ import {
   choseBird,
   chosenCorrectBird,
   removeAttempts,
-  // removeScore,
   addAttempts,
   addScore,
   correctAnswer,
@@ -14,48 +13,58 @@ import {
   stopGame
 } from '../../redux/actions';
 
-import winSound from '../../assets/audio/win.mp3';
-import errorSound from '../../assets/audio/error.mp3';
 import birdsData from '../../data/birds';
 
-function BirdListItem(props) {
+const BirdListItem = (props) => {
+ 
+  const checkBird = (event) => {     
+    props.choseBird({
+      ...birdsData[props.page].find(
+        (bird) => bird.name === props.name
+      )
+    });
 
-  
-  const checkBird = (event) => {
-     
-  props.choseBird({
-    ...birdsData[props.page].find(
-      (bird) => bird.name === props.name
-    )
-  });
-
-console.log(props.score)
     if (props.gameOn) { 
       const currentBirdId = Number(event.target.id);
-      // console.log(currentBirdId)
-      // console.log(props.question.id)
-
-      if (currentBirdId === 1) {
-        console.log(props)
-      }
 
       if (currentBirdId === props.question.id) {
-console.log('correct')
-     //   getCorrectSound()
+        getCorrectSound();
         props.addScore(props.attempts)
-      //   props.chosenCorrectBird()
         props.correctAnswer(props.id)
         props.stopGame();
         props.removeAttempts();               
       } else {
-        console.log('no')
-      //   getIncorrectSound()
+        getIncorrectSound();
         props.addAttempts()
         props.incorrectAnswer(props.id)
       }
     }    
   }
- 
+
+  const getSound = (win) => {
+    const winAudio = document.getElementById('winSound');
+    const errorAudio = document.getElementById('errorSound');
+
+    if(win) {
+      winAudio.currentTime = 0;
+      winAudio.play();
+    } else {
+      errorAudio.currentTime = 0;
+      errorAudio.play();
+    }
+  }
+  
+  const getCorrectSound = () => {
+    const winAudio = document.getElementById('winSound');
+    winAudio.currentTime = 0;
+    winAudio.play();
+  }
+
+  const getIncorrectSound = () => {
+    const errorAudio = document.getElementById('errorSound');
+    errorAudio.currentTime = 0;
+    errorAudio.play();
+  }
   
   const switchItemClass = (props) => {
     const id = props.answersResult[props.id];
@@ -83,10 +92,6 @@ const mapStateToProps = (state) => {
     page: state.page.page,
     question: state.question.question,
     gameOn: state.gameOn,
-
-
-    // currentRound: state.round.round,
-    // unknownBird: state.unknownBird.unknownBird,
     attempts: state.score.attempts,
     answersResult: state.answersResult.answersResult,
   }
@@ -96,7 +101,6 @@ const mapDispatchToProps = {
   choseBird,
   chosenCorrectBird,
   removeAttempts,
-  // removeScore,
   addAttempts,
   addScore,
   correctAnswer,
