@@ -1,40 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './Answer.scss';
-import AudioPlayer from '../audio-player';
+import ReactAudioPlayer from 'react-audio-player';
 
-function Answer(props) {
-  console.log(props)
-  return (
+import './Answer.scss';
+
+const Answer = (props) => {
+
+  if (Object.keys(props.chosenBird).length === 0) {    
+    return (
       <div className="bird-details card">
         <p className="instruction">
           <span>Послушайте плеер.</span>
           <span>Выберите птицу из списка</span>
-        </p>
-        <div className="card-body">
-          <img className="bird-image" src="https://live.staticflickr.com//65535//49298804222_474cfe8682.jpg" alt="Ворон"/>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <h4>Ворон</h4>
-            </li>
-            <li className="list-group-item">
-              <span>Corvus corax</span>
-            </li>
-            <li className="list-group-item">
-              <AudioPlayer />
-            </li>
-          </ul>
-        </div>
-        <p className="bird-description">
-          Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
-        </p>
+        </p>        
       </div>
-  )
+    )
+  } else {
+    return (
+      <div className="bird-details card">
+        <div className="card-body">
+          <img className="bird-image" src={props.chosenBird.image} alt="Ворон"/>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <h4>{props.chosenBird.name}</h4>
+              </li>
+              <li className="list-group-item">
+                <span>{props.chosenBird.species}</span>
+              </li>
+              <li className="list-group-item">
+                <ReactAudioPlayer className="audio-player"
+                  src={props.chosenBird.audio}
+                  controls
+                />
+              </li>
+            </ul>
+          </div>
+          <p className="bird-description">{props.chosenBird.description}</p>   
+      </div>
+    )
+  }
 }  
 
 const mapStateToProps = (state) => {
   return {
     chosenBird: state.chosenBird.chosenBird,
+    gameOn: state.gameOn,
+    question: state.question.question,
   }
 }
 
