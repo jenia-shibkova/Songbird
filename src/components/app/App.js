@@ -8,19 +8,36 @@ import RandomBird from '../random-bird';
 import BirdList from '../bird-list';
 import Answer from '../answer';
 import ButtonNext from '../button-next';
-import winAudio from '../../assets/audio/win.mp3';
+
+import winAudio from '../../assets/audio/success.mp3';
 import errorAudio from '../../assets/audio/error.mp3';
 
+import {
+  incrementPage,
+  pageRestart,
+  removeScore
+} from '../../redux/actions';
 
-function App(props) {
+const App = (props) => {
+  const restartGame = () => {
+    props.pageRestart();
+    props.removeScore();
+  }
 
-     if (props.page > 5) {
+  if (props.page > 5) {
       return (
         <div className="app">
-          <p>Game over</p>
+          <Header /> 
+          <div className="jumbotron game-over">
+            <h1 className="display-3 text-center">Поздравляем!</h1>
+            <p className="lead text-center">Вы прошли викторину и набрали {props.score} из 30 возможных баллов</p>
+            <hr className="my-4"/>
+              <button className="btn btn-next btn-game-over"
+                      onClick={restartGame}>Попробовать еще раз!</button>
+          </div>
         </div>
       )    
-    }
+   }
 
     return (
       <div className="app">
@@ -34,7 +51,9 @@ function App(props) {
             <Answer />
           </div>
           <ButtonNext />
-        </div>     
+        </div> 
+        <audio src={winAudio} id="winSound"></audio>
+        <audio src={errorAudio} id="errorSound"></audio>    
       </div>
     )
 
@@ -43,7 +62,15 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     page: state.page.page,
+    score: state.score.score,
   };
 };
 
-export default connect(mapStateToProps, null)(App);
+
+const mapDispatchToProps = {
+  incrementPage,
+  pageRestart,
+  removeScore
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
