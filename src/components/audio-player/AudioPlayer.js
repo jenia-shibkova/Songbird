@@ -1,11 +1,8 @@
 import React from 'react';
 import './AudioPlayer.scss';
 
-function AudioPlayer(props) {
-  const onClick = () => {
-    console.log(onClick)
-  }
-
+const AudioPlayer = (props) => {
+ 
   return (
     <div className="audio-player">
       <audio src={props.url} hidden=""></audio>
