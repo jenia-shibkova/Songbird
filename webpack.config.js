@@ -20,7 +20,7 @@ module.exports = (env = {}) => {
     const plugins = [ 
       new HtmlWebpackPlugin({
         template: './src/index.html',
-      // favicon: './src/assets/img/icon-48x48.png',
+        favicon: './src/assets/image/icon-48x48.png',
       }),
       new CopyPlugin({
         patterns: [
@@ -76,6 +76,13 @@ module.exports = (env = {}) => {
           }
         },
         {
+          test: /\.mp3$/,
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+          },
+        },
+        {
           test: /\.(woff(2)?|ttf|otf|eot)$/,
           use: {
             loader: 'file-loader',
@@ -84,14 +91,6 @@ module.exports = (env = {}) => {
               outputPath: 'assets/fonts'
             },
           }
-        },
-        {
-          test: /\.(mp3)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-            },
-          ],
         },
       ],
     },
