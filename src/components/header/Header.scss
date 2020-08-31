@@ -3,9 +3,24 @@
   flex-direction: column;
 }
 
+.header ul li a {
+  cursor: auto;
+  border-radius: 0!important;
+}
+
 .header ul li {
   flex: auto;
   text-align: center;
+}
+
+.page-item .page-link {
+  background-color: #008966;
+  border-color: #007c5d;
+}
+
+.page-item.active .page-link {
+  background-color: #00bc8c;
+  border-color: #007c5d;
 }
 
 .top-panel {
