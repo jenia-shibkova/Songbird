@@ -39,27 +39,10 @@
   padding: 0;
   flex-direction: row;
   min-height: 173px;
-  display: none;
 }
 
 .card-body .list-group {
   width: calc(100% - 240px);
-}
-
-// .instruction p {
-//   display: none;
-// }
-
-// .instruction {
-//   display: block;
-// }
-
-.instruction span {
-  display: block;
-}
-
-.bird-description {
-  display: none;
 }
 
 @media (max-width: 992px) {
@@ -78,11 +61,14 @@
 @media (max-width: 767px) {  
   .bird-details {
     display: block;
-    margin-top: 40px;    
+    margin-top: 40px; 
+    height: auto;   
   }
+
   .card-body {
     flex-direction: row;
   }
+
   .bird-details .bird-image {
     margin-right: 2rem;
   }
