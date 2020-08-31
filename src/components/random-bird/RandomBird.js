@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ReactAudioPlayer from 'react-audio-player';
 
 import './RandomBird.scss';
-//import AudioPlayer from '../audio-player';
+
 import birdImage from '../../assets/image/bird.jpg';
 import birdsData from '../../data/birds';
-import winAudio from '../../assets/audio/win.mp3';
 
-function RandomBird(props) {
-  console.log(birdsData[props.page][props.question.id - 1])
+const RandomBird = (props) => {
+
   return (
     <div className="random-bird jumbotron rounded">
          <img className="bird-image" 
@@ -31,7 +30,6 @@ function RandomBird(props) {
       </div>
   )
 }
-
 
 const mapStateToProps = (state) => {
   return {
